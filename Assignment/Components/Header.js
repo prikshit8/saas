@@ -1,3 +1,6 @@
+import React from "react";
+import PropTypes from "prop-types";
+
 const Header = ({ colDefs }) => {
   return (
     <thead>
@@ -10,4 +13,12 @@ const Header = ({ colDefs }) => {
   );
 };
 
-export default Header;
+Header.propTypes = {
+  colDefs: PropTypes.arrayOf(
+    PropTypes.shape({
+      headerName: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
+
+export default React.memo(Header);

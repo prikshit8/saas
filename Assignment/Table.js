@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { useFetch } from "./hooks/useFetch";
 import Header from "./Components/Header";
 
@@ -43,6 +44,16 @@ const Table = ({ colDefs, api }) => {
       <button onClick={nextPage}>next</button>
     </div>
   );
+};
+
+Table.propTypes = {
+  colDefs: PropTypes.arrayOf(
+    PropTypes.shape({
+      field: PropTypes.string.isRequired,
+      headerName: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  api: PropTypes.string.isRequired,
 };
 
 export default React.memo(Table);
