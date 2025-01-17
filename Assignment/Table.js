@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useFetch } from "./hooks/useFetch";
 import Header from "./Components/Header";
+import { NEXT, PREV } from "./constants";
 
-const Table = ({ colDefs, api }) => {
+const Table = ({ colDefs, api, rowsPerPage }) => {
   const { data, error, loading } = useFetch(api);
   const [currentPage, setCurrentPage] = useState(0);
   if (loading) {
@@ -15,14 +16,25 @@ const Table = ({ colDefs, api }) => {
   if (!data) {
     return <div>No data available</div>;
   }
-  const renderData = data.slice(currentPage, currentPage + 5);
+
+  const renderData = data.slice(
+    currentPage * rowsPerPage,
+    (currentPage + 1) * rowsPerPage
+  );
+
+  const isNextDisabled = (currentPage + 1) * rowsPerPage >= data.length;
+  const isPrevDisabled = currentPage === 0;
 
   const nextPage = () => {
-    setCurrentPage(currentPage + 5);
+    if (!isNextDisabled) {
+      setCurrentPage(currentPage + 1);
+    }
   };
 
   const prevPage = () => {
-    setCurrentPage(currentPage - 5);
+    if (!isPrevDisabled) {
+      setCurrentPage(currentPage - 1);
+    }
   };
 
   return (
@@ -40,8 +52,8 @@ const Table = ({ colDefs, api }) => {
           ))}
         </tbody>
       </table>
-      <button onClick={prevPage}>prev</button>
-      <button onClick={nextPage}>next</button>
+      <button disabled={isPrevDisabled} onClick={prevPage}>{PREV}</button>
+      <button disabled={isNextDisabled} onClick={nextPage}>{NEXT}</button>
     </div>
   );
 };
@@ -54,6 +66,7 @@ Table.propTypes = {
     })
   ).isRequired,
   api: PropTypes.string.isRequired,
+  rowsPerPage: PropTypes.number.isRequired,
 };
 
 export default React.memo(Table);

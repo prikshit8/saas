@@ -18,7 +18,7 @@ const colDefs = [
 const App = () => {
   return (
     <div className="app">
-      <Table colDefs={colDefs} api={api} />
+      <Table colDefs={colDefs} api={api} rowsPerPage={5} />
     </div>
   );
 };
