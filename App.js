@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import styles from "./App.module.css";
 import Table from "./Assignment/Table";
 import { api } from "./Assignment/constants";
 
@@ -17,8 +18,8 @@ const colDefs = [
 
 const App = () => {
   return (
-    <div className="app">
-      <Table colDefs={colDefs} api={api} rowsPerPage={5} />
+    <div className={styles.app}>
+      <Table colDefs={colDefs} api={api} rowsPerPage={5} title={"pagination"} />
     </div>
   );
 };

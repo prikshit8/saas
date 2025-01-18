@@ -1,12 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styles from "./Header.module.css";
 
 const Header = ({ colDefs }) => {
   return (
     <thead>
       <tr>
         {colDefs.map((def) => (
-          <th key={def.headerName}>{def.headerName}</th>
+          <th className={styles.th} key={def.headerName}>
+            {def.headerName}
+          </th>
         ))}
       </tr>
     </thead>

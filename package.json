@@ -1,22 +1,13 @@
 {
-  "name": "swiggy-clone",
+  "name": "saas-labs",
   "version": "1.0.0",
-  "description": "This is swiggy clone",
+  "description": "This is saas labs assignment",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html",
-    "test": "jest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/prikshit8/swiggy-clone.git"
+    "build": "parcel build index.html"
   },
   "author": "prikshit8",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/prikshit8/swiggy-clone/issues"
-  },
-  "homepage": "https://github.com/prikshit8/swiggy-clone#readme",
   "devDependencies": {
     "parcel": "^2.10.2",
     "process": "^0.11.10"
